@@ -1,13 +1,19 @@
 quickReviewGetIds: function () {
-  const syncShelfs = yv.vendorCustom.quickReviewSetup()
-  const asyncShelfs = yv.vendorCustom.quickReviewAsyncSetup()
-  
-  if (!asyncShelfs.length) {
-      return syncShelfs
-  
-  } else {
-      return syncShelfs.concat(asyncShelfs)
-  }
+    const syncShelfs = yv.vendorCustom.quickReviewSetup()
+    const asyncShelfs = yv.vendorCustom.quickReviewAsyncSetup()
+    let allShelfs
+    
+    if (syncShelfs && asyncShelfs) {
+        allShelfs = syncShelfs.concat(asyncShelfs)
+    
+    } else if (syncShelfs && !asyncShelfs) {
+        allShelfs = [].concat(syncShelfs)
+        
+    } else if (!syncShelfs && asyncShelfs) {
+        allShelfs = [].concat(asyncShelfs)
+    }
+    
+    return allShelfs
 },
 
 quickReviewSetup: function () {
