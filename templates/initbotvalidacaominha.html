@@ -1,0 +1,336 @@
+<!-- Senff -->
+<form novalidate name="form" action="https://www8.directtalk.com.br/chat31/?idd=24B0342126F9B358507C"
+  ng-submit="submit(form, $event)">  
+
+  <div>
+    <label>Nome*:</label>
+    <input name="nome_usuario" required />
+  </div>
+
+  <div>
+    <label>CNPJ*:</label>
+		<input type="text" name="cnpj" id="cnpj" minlength="14" maxlength="14" required key />
+  </div>
+
+  <div>
+    <label>Código de lojista*:</label>
+    <input type="text" id="codigo_lojista" name="codigo" minlength="6" maxlength="6" required />
+  </div>
+
+  <div>
+    <label>Nome fantasia*:</label>
+    <input name="nome_fantasia" id="nome_fantasia" required />
+  </div>
+
+  <div>
+    <button id="btn" type="submit" disabled>ENVIAR</button>
+    <small>OBS.: Os campos com * são de preenchimento obrigatório.</small>
+  </div>
+</form>
+
+
+<script type="text/javascript-lazy">
+
+//inicia script
+window.initfake = {};
+
+//variaveis
+var inputCNPJ = document.querySelector('input[name=cnpj]');
+var inputNome = document.querySelector('input[name=nome_usuario]');
+var inputcodigoLojista = document.querySelector('#codigo_lojista');
+var inputnomeFantasia = document.querySelector('#nome_fantasia');
+var btn = document.querySelector('#btn');
+
+var objValidacao = {
+  "nome": false,
+  "cnpj": false,
+  "codigoLojista": false,
+  "nomeFantasia": false
+}
+
+//event listener input cnpj
+inputCNPJ.addEventListener('keyup', () => { 
+
+  //mascara o cliente não usa
+  //window.initfake.mascaraMutuario(inputCNPJ, window.initfake.mascaraCNPJ)
+
+  inputCNPJ.value = inputCNPJ.value.replace(/[^\d,]/g,'');
+
+  //habilita botao se cnpj estiver validado
+  if ( validarCNPJ(inputCNPJ.value) ) {
+    objValidacao.cnpj = true
+    inputCNPJ.style.borderColor = 'green';
+  }else{
+    objValidacao.cnpj = false
+    inputCNPJ.style.borderColor = 'red'
+  }
+
+  verifyObj()
+
+})
+
+//event listener input codigo lojista
+inputcodigoLojista.addEventListener('keyup', () => { 
+
+  inputcodigoLojista.value = inputcodigoLojista.value.replace(/[^\d,]/g,'');
+
+  if ( inputcodigoLojista.value.length < 6 || inputcodigoLojista.value.length > 6) {
+    objValidacao.codigoLojista = false
+    inputcodigoLojista.style.borderColor = 'red';
+  }else{
+    objValidacao.codigoLojista = true
+    inputcodigoLojista.style.borderColor = 'green';
+  }
+
+  verifyObj()
+
+})
+
+//event listener input nome
+inputNome.addEventListener('keyup', () => { 
+
+  if ( !inputNome.value.length ) {
+    objValidacao.nome = false
+    inputNome.style.borderColor = 'red';
+  }else{
+    objValidacao.nome = true
+    inputNome.style.borderColor = 'green';
+  }
+
+  verifyObj()
+
+})
+
+//event listener input inputnomeFantasia
+inputnomeFantasia.addEventListener('keyup', () => { 
+
+  if ( !inputnomeFantasia.value.length ) {
+    objValidacao.nomeFantasia = false
+    inputnomeFantasia.style.borderColor = 'red';
+  }else{
+    objValidacao.nomeFantasia = true
+    inputnomeFantasia.style.borderColor = 'green';
+  }
+
+  verifyObj()
+
+})
+
+//previne que retirem o disabled do html manualmente
+btn.addEventListener('click', (event) => { 
+  if (!verifyObj()) event.preventDefault();
+})
+
+//verifica se todas as informações estao validas para poder inciar atendimento
+function verifyObj() {
+  let verifyobj = 0
+  Object.keys(objValidacao).forEach((item) => {
+    if (objValidacao[item]) verifyobj++
+  })
+  if (verifyobj === 4) {
+    btn.disabled = false
+    return true
+  }else{
+    btn.disabled = true
+    return false
+  }
+}
+
+//mascara o cpf ou cnpj
+window.initfake.mascaraMutuario = function(o,f){
+  v_obj=o
+  v_fun=f
+  setTimeout('window.initfake.execmascara()',1)
+}
+  
+window.initfake.execmascara = function (){
+    v_obj.value=v_fun(v_obj.value)
+}
+  
+window.initfake.mascaraCNPJ = function(v){
+  
+    //Remove tudo o que não é dígito
+    v=v.replace(/\D/g,"")
+  
+    if (v.length <= 11) { //CPF 
+      //Coloca um ponto entre o terceiro e o quarto dígitos
+      v=v.replace(/(\d{3})(\d)/,"$1.$2")
+
+      //Coloca um ponto entre o terceiro e o quarto dígitos
+      //de novo (para o segundo bloco de números)
+      v=v.replace(/(\d{3})(\d)/,"$1.$2")
+
+      //Coloca um hífen entre o terceiro e o quarto dígitos
+      v=v.replace(/(\d{3})(\d{1,2})$/,"$1-$2")
+
+    } else { //CNPJ
+
+      //Coloca ponto entre o segundo e o terceiro dígitos
+      v=v.replace(/^(\d{2})(\d)/,"$1.$2")
+
+      //Coloca ponto entre o quinto e o sexto dígitos
+      v=v.replace(/^(\d{2})\.(\d{3})(\d)/,"$1.$2.$3")
+
+      //Coloca uma barra entre o oitavo e o nono dígitos
+      v=v.replace(/\.(\d{3})(\d)/,".$1/$2")
+
+      //Coloca um hífen depois do bloco de quatro dígitos
+      v=v.replace(/(\d{4})(\d)/,"$1-$2")
+
+    }
+
+    return v
+  
+}
+
+//valida o cnpj inserido retornando true ou false
+function validarCNPJ(cnpj) {
+ 
+  //remove tudo o que não é numero
+  cnpj = cnpj.replace(/[^\d]+/g,'');
+
+  if(cnpj == '') return false;
+   
+  if (cnpj.length != 14)
+      return false;
+
+  // Elimina CNPJs invalidos conhecidos
+  if (cnpj == "00000000000000" || 
+      cnpj == "11111111111111" || 
+      cnpj == "22222222222222" || 
+      cnpj == "33333333333333" || 
+      cnpj == "44444444444444" || 
+      cnpj == "55555555555555" || 
+      cnpj == "66666666666666" || 
+      cnpj == "77777777777777" || 
+      cnpj == "88888888888888" || 
+      cnpj == "99999999999999")
+      return false;
+       
+  // Valida DVs
+  tamanho = cnpj.length - 2
+  numeros = cnpj.substring(0,tamanho);
+  digitos = cnpj.substring(tamanho);
+  soma = 0;
+  pos = tamanho - 7;
+  for (i = tamanho; i >= 1; i--) {
+    soma += numeros.charAt(tamanho - i) * pos--;
+    if (pos < 2)
+          pos = 9;
+  }
+  resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
+  if (resultado != digitos.charAt(0))
+      return false;
+       
+  tamanho = tamanho + 1;
+  numeros = cnpj.substring(0,tamanho);
+  soma = 0;
+  pos = tamanho - 7;
+  for (i = tamanho; i >= 1; i--) {
+    soma += numeros.charAt(tamanho - i) * pos--;
+    if (pos < 2)
+          pos = 9;
+  }
+  resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
+  if (resultado != digitos.charAt(1))
+        return false;
+         
+  return true;
+  
+}
+
+</script>
+
+<style>
+  #btn[disabled]{
+    opacity: 0.3;
+  }
+
+  .bot-initfake {
+    position: absolute;
+    width: 100%;
+    background: #FFF;
+    max-height: 100%;
+    overflow-y: auto;
+    z-index: 99999;
+  }
+
+  .bot-initfake form {
+    padding: 30px;
+    font-size: 14px;
+    color: #573449;
+    width: 100%;
+    text-align: center;
+  }
+
+  .bot-initfake legend {
+    text-align: left;
+    margin: 10px 0;
+  }
+
+  .bot-initfake form div {
+    display: block;
+    width: 100%;
+    margin: 10px auto;
+  }
+
+  .bot-initfake form input,
+  .bot-initfake form select {
+    display: block;
+    width: 100%;
+    border: 0;
+    border-bottom: 1px solid #d0d0d0;
+    outline: 0;
+    padding: 0;
+    height: 32px;
+    margin: 0;
+  }
+
+  .bot-initfake label {
+    /* vertical-align: middle; */
+    display: inline-block;
+    text-align: right;
+    width: 30%;
+    display: block;
+    width: 100%;
+    text-align: left;
+    margin: 15px 0 0 0;
+  }
+
+  .bot-initfake button[type=submit] {
+    border: 0;
+    background: #2d366f;
+    color: white;
+    font-size: 14px;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    display: block;
+    text-align: center;
+    margin: 15px auto;
+    width: 160px;
+    height: 32px;
+    border-radius: 3px !important;
+    box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+  }
+
+  .bot-initfake small {
+    padding: 5px;
+    font-size: 13px;
+    width: 50%;
+    margin: 0 auto;
+  }
+
+  .bot-initfake form input.ng-dirty.ng-invalid,
+  .bot-initfake form select.ng-dirty.ng-invalid {
+    border: 0;
+    border-bottom: 1px solid red !important;
+  }
+
+  .bot-initfake form input.ng-dirty.ng-valid,
+  .bot-initfake form select.ng-dirty.ng-valid {
+    border: 0;
+    border-bottom: 1px solid green !important;
+  }
+</style>
