@@ -1,11 +1,4 @@
 /* init - custom yourviews slider */
-.yv-testimonial {
-  margin-top: 50px;
-}
-
-.yv-testimonial .yv-title {
-  text-align: center;
-}
 
 #yv-container {
   position: relative;
@@ -15,7 +8,6 @@
   justify-content: center;
   width: auto;
   height: auto;
-  margin: 0 0 30px;
 }
 
 #yv-container * {
@@ -30,7 +22,6 @@
   overflow: hidden;
   position: relative;
   height: auto;
-  margin: 0 10px;
   z-index: 2;
   cursor: grab;
 }
@@ -72,7 +63,7 @@
   background-repeat: no-repeat;
   background-position: 50%;
   background-size: 90%;
-  background-color: var(--yv-pagecolor-one);
+  background-color: #E2AA52;
   z-index: 3;
 }
 
@@ -85,12 +76,10 @@
 }
 
 .control.next:active {
-  transform: rotate(180deg) scale(.9);
+    transform: rotate(180deg) scale(.9);
 }
 
-.next:active {
-  transform: rotate(180deg);
-}
+.next:active { transform: rotate(180deg); }
 
 .paging {
   position: absolute;
@@ -137,20 +126,20 @@
 }
 
 .paging .index {
-  background-color: var(--yv-pagecolor-one);
+  background-color: #E2AA52;
 }
 
 .yv-slide .yv-rating-content {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  justify-content: flex-start;
-  width: 100%;
-  height: auto;
-  background-color: #fff;
-  box-shadow: 2px 2px 3px 2px rgba(0, 0, 0, 0.15);
-  border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+    height: auto;
+    background-color: #fff;
+    box-shadow: 2px 2px 3px 2px rgba(0, 0, 0, 0.15);
+    border-radius: 5px;
 }
 
 .yv-slide .yv-rating-content .yv-rating {
@@ -166,7 +155,7 @@
 
 .yv-slide .yv-rating-content .yv-rating .yv-star {
   font-size: 14px;
-  color: gold;
+  color: #ffad32;
   padding: 2px;
 }
 
@@ -182,25 +171,20 @@
 }
 
 .yv-slide .yv-rating-content .yv-rating-comment {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: flex-start;
-  width: 100%;
-  height: auto;
-  padding: 10px;
+   display: flex;
+   flex-direction: row;
+   align-items: flex-start;
+   justify-content: flex-start;
+   width: 100%;
+   height: auto;
+   padding: 10px;
 }
 
 .yv-slide .yv-rating-content .yv-rating-comment .yv-paragraph {
   display: block;
   width: 100%;
-  min-height: 80px;
-}
-
-.yv-slide .yv-rating-content .yv-rating-comment .yv-paragraph,
-.yv-slide .yv-rating-content .yv-rating-comment .yv-paragraph .yv-viewmore-expanded {
-  font-size: 14px !important;
-  line-height: 1.65;
+  min-height: 60px;
+  font-size: 14px;
   text-align: justify;
 }
 
@@ -229,52 +213,51 @@
 .yv-slide .yv-rating-content .yv-ratings .yv-purchase-rating .fa-shopping-cart,
 .yv-slide .yv-rating-content .yv-ratings .yv-purchase-rating .fa-truck,
 .yv-slide .yv-rating-content .yv-ratings .yv-purchase-rating .fa-support {
-  font-size: 14px;
   margin-right: 5px;
 }
 
 .yv-slide .yv-rating-content .yv-ratings .yv-purchase-rating .yv-star {
-  font-size: 12px;
-  color: gold;
+  font-size: 11px;
+  color: #ffad32;
   padding: 1px;
 }
 
 .yv-slide .yv-rating-user {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  justify-content: flex-start;
-  width: 100%;
-  height: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+    height: auto;
 }
 
 .yv-slide .yv-rating-user .yv-user-image {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  width: 30%;
-  height: auto;
-  padding: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 30%;
+    height: auto;
+    padding: 10px;
 }
 
 .yv-slide .yv-rating-user .yv-user-image .yv-profile-img {
-  display: block;
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
+    display: block;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
 }
 
 .yv-slide .yv-rating-user .yv-user-info {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  width: 70%;
-  height: auto;
-  padding: 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    width: 70%;
+    height: auto;
+    padding: 10px;
 }
 
 .yv-slide .yv-rating-user .yv-user-info .yv-user-name {
@@ -285,8 +268,8 @@
   text-align: left;
   text-transform: capitalize;
   font-size: 14px;
-  font-weight: bold;
-  color: var(--yv-pagecolor-title);
+  font-weight: 500;
+  color: #fff;
 }
 
 .yv-slide .yv-rating-user .yv-user-info .yv-user-local {
