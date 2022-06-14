@@ -1,0 +1,103 @@
+<div class="yv-testimonial__container">
+  <div class="yv-testimonial__container__view">
+      <div class="yv-testimonial__container__view__wrapper">
+          {{#each this}}
+          <div class="yv-slide">
+              <div class="yv-slide__rating-content">
+                  <div class="yv-slide__rating-content__rating">
+                      {{#times 0 (math Rating "floor") 1}}
+                      <i class="yv-slide__rating-content__rating__star">
+                          {{{include stars_full}}}
+                      </i>
+                      {{/times}}
+
+                      {{#ifCond (math Rating "%" 1) ">" 0}}
+                      <i class="yv-slide__rating-content__rating__star">
+                          {{{include stars_half}}}
+                      </i>
+                      {{/ifCond}}
+                      
+                      {{#times 0 (math 5 "-" (math Rating "ceil")) 1}}
+                      <i class="yv-slide__rating-content__rating__star">
+                          {{{include stars_empty}}}
+                      </i>
+                      {{/times}}
+                  </div>
+
+                  <div class="yv-slide__rating-content__date">
+                      {{dateFormat Date format="DD/MM/YYYY"}}
+                  </div>
+
+                  <div class="yv-slide__rating-content__comment">
+                      <p class="yv-slide__rating-content__comment__paragraph">
+                          {{viewMore Description 65}}
+                      </p>
+                  </div>
+
+                  <div class="yv-slide__rating-content__ratings">
+                      {{#each Ratings}}
+                      <div class="yv-slide__rating-content__ratings__purchase-rating">
+                          {{#ifCond Id "==" "storebuyprocess"}}
+                          <i class="yv-slide__rating-content__purchase-rating__icon process">
+                              <i class="fa fa-shopping-cart"></i>
+                          </i>
+                          {{/ifCond}}
+                          
+                          {{#ifCond Id "==" "storedelivery"}}
+                          <i class="yv-slide__rating-content__ratings__purchase-rating__icon delivery">
+                              <i class="fa fa-truck"></i>
+                          </i>
+                          {{/ifCond}}
+                          
+                          {{#ifCond Id "==" "storeservice"}}
+                          <i class="yv-slide__rating-content__ratings__purchase-rating__icon attendance">
+                              <i class="fa fa-support"></i>
+                          </i>
+                          {{/ifCond}}
+
+                          {{#times 0 (math ValueAsInt "floor" 1) 1}}
+                          <i class="yv-slide__rating-content__ratings__purchase-rating__star">
+                              {{{include stars_full}}}
+                          </i>
+                          {{/times}}
+                          
+                          {{#ifCond (math ValueAsInt "%" 1) ">" 0}}
+                          <i class="yv-slide__rating-content__ratings__purchase-rating__star">
+                              {{{include stars_half}}}
+                          </i>
+                          {{/ifCond}}
+                          
+                          {{#times 0 (math 5 "-" (math ValueAsInt "ceil")) 1}}
+                          <i class="yv-slide__rating-content__ratings__purchase-rating__star">
+                              {{{include stars_empty}}}
+                          </i>
+                          {{/times}}
+                      </div>
+                      {{/each}}
+                  </div>
+              </div>
+              <div class="yv-slide__rating-user">
+                  <div class="yv-slide__rating-user__image">
+                      {{#if User.Image}}
+                      <img src="{{User.Image}}" class="yv-slide__rating-user__image__profile-img" />
+                      {{else}}
+                      <img src="{{superCond User.Gender 'M' 'F' StoreInfo.UserGenderMaleAvatar StoreInfo.UserGenderFemaleAvatar StoreInfo.UserGenderUnidentified}}"
+                          class="yv-slide__rating-user__image__profile-img --default" />
+                      {{/if}}
+                  </div>
+                  <div class="yv-slide__rating-user__info">
+                      <span class="yv-slide__rating-user__info__name">
+                          {{firstLastName User.Name}}
+                      </span>
+                      {{#if User.City}}
+                      <span class="yv-slide__rating-user__info__local">
+                          {{User.City}}/{{User.State}}
+                      </span>
+                      {{/if}}
+                  </div>
+              </div>
+          </div>
+          {{/each}}
+      </div>
+  </div>
+</div>

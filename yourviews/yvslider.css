@@ -1,6 +1,24 @@
-/* init - custom yourviews slider */
+/************************** testimonial ***************************/
 
-#yv-container {
+.yv-testimonial {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+  margin: 50px 0;
+}
+
+.yv-testimonial * {
+  box-sizing: border-box;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-drag: none;
+}
+
+.yv-testimonial__container {
   position: relative;
   display: flex;
   flex-direction: row;
@@ -10,47 +28,13 @@
   height: auto;
 }
 
-#yv-container * {
-  user-select: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  -webkit-user-drag: none;
-}
-
-#yv-view {
-  overflow: hidden;
-  position: relative;
-  height: auto;
-  z-index: 2;
-  cursor: grab;
-}
-
-#yv-view.grabbing {
-  cursor: grabbing;
-}
-
-#yv-wrapper {
-  top: 0;
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 25px 0;
-  z-index: 1;
-}
-
-#yv-wrapper.shifting {
-  transition: left .3s ease-out;
-}
-
-.control.prev.hide,
-.control.next.hide {
+.yv-testimonial__container .control.prev.hide,
+.yv-testimonial__container .control.next.hide {
   visibility: hidden;
 }
 
-.control.prev,
-.control.next {
+.yv-testimonial__container .control.prev,
+.yv-testimonial__container .control.next {
   outline: none;
   cursor: pointer;
   position: relative;
@@ -67,48 +51,47 @@
   z-index: 3;
 }
 
-.control.next {
+.yv-testimonial__container .control.next {
   transform: rotate(180deg);
 }
 
-.control.prev:active {
+.yv-testimonial__container .control.prev:active {
   transform: scale(.9);
 }
 
-.control.next:active {
-    transform: rotate(180deg) scale(.9);
+.yv-testimonial__container .control.next:active {
+  transform: rotate(180deg) scale(.9);
 }
 
-.next:active { transform: rotate(180deg); }
+.yv-testimonial__container .next:active {
+  transform: rotate(180deg);
+}
 
-.paging {
-  position: absolute;
-  top: 85%;
+.yv-testimonial__container__view {
+  overflow: hidden;
+  position: relative;
+  height: auto;
+  margin: 0 10px;
+  z-index: 2;
+  cursor: grab;
+}
+
+.yv-testimonial__container__view.grabbing {
+  cursor: grabbing;
+}
+
+.yv-testimonial__container__view__wrapper {
+  top: 0;
+  position: relative;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
-  width: auto;
-  height: auto;
-  margin: 25px 0 0;
-  background: transparent;
-  z-index: 3;
+  padding: 25px 0;
+  z-index: 1;
 }
 
-.paging .index {
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  margin: 0 2px;
-  border: none;
-  border-radius: 50%;
-  filter: opacity(.35);
-  outline: none;
-  cursor: pointer;
-}
-
-.paging .index.active {
-  filter: opacity(1);
+.yv-testimonial__container__view__wrapper.shifting {
+  transition: left .3s ease-out;
 }
 
 .yv-slide {
@@ -125,62 +108,65 @@
   transition: all 1s;
 }
 
-.paging .index {
-  background-color: #000;
+.yv-slide__rating-content {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+  height: auto;
+  background-color: #fff;
+  box-shadow: 2px 2px 3px 2px rgba(0, 0, 0, 0.15);
+  border-radius: 5px;
 }
 
-.yv-slide .yv-rating-content {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    justify-content: flex-start;
-    width: 100%;
-    height: auto;
-    background-color: #fff;
-    box-shadow: 2px 2px 3px 2px rgba(0, 0, 0, 0.15);
-    border-radius: 5px;
-}
-
-.yv-slide .yv-rating-content .yv-rating {
+.yv-slide__rating-content__rating {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
   justify-content: flex-start;
   width: 60%;
-  height: auto;
+  height: 50px;
   padding: 10px;
 }
 
-.yv-slide .yv-rating-content .yv-rating .yv-star {
-  font-size: 14px;
-  color: gold;
-  padding: 2px;
+.yv-slide__rating-content__rating__star {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  height: 100%;
 }
 
-.yv-slide .yv-rating-content .yv-rating-date {
+.yv-slide__rating-content__rating__star svg {
+  width: 18px;
+  height: 18px;
+}
+
+.yv-slide__rating-content__date {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: flex-end;
   width: 40%;
-  height: auto;
+  height: 50px;
   padding: 10px;
   font-size: 12px;
 }
 
-.yv-slide .yv-rating-content .yv-rating-comment {
-   display: flex;
-   flex-direction: row;
-   align-items: flex-start;
-   justify-content: flex-start;
-   width: 100%;
-   height: auto;
-   padding: 10px;
+.yv-slide__rating-content__comment {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+  height: auto;
+  padding: 10px;
 }
 
-.yv-slide .yv-rating-content .yv-rating-comment .yv-paragraph {
+.yv-slide__rating-content__comment__paragraph {
   display: block;
   width: 100%;
   min-height: 60px;
@@ -188,7 +174,7 @@
   text-align: justify;
 }
 
-.yv-slide .yv-rating-content .yv-ratings {
+.yv-slide__rating-content__ratings {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -199,7 +185,7 @@
   padding: 10px 5px;
 }
 
-.yv-slide .yv-rating-content .yv-ratings .yv-purchase-rating {
+.yv-slide__rating-content__ratings__purchase-rating {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -210,57 +196,72 @@
   margin: 0 5px 0 0;
 }
 
-.yv-slide .yv-rating-content .yv-ratings .yv-purchase-rating .fa-shopping-cart,
-.yv-slide .yv-rating-content .yv-ratings .yv-purchase-rating .fa-truck,
-.yv-slide .yv-rating-content .yv-ratings .yv-purchase-rating .fa-support {
+.yv-slide__rating-content__ratings__purchase-rating__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
   margin-right: 5px;
 }
 
-.yv-slide .yv-rating-content .yv-ratings .yv-purchase-rating .yv-star {
-  font-size: 11px;
-  color: gold;
-  padding: 1px;
+.yv-slide__rating-content__ratings__purchase-rating__icon svg {
+  width: 14px;
+  height: 14px;
 }
 
-.yv-slide .yv-rating-user {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    justify-content: flex-start;
-    width: 100%;
-    height: auto;
+.yv-slide__rating-content__ratings__purchase-rating__star {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
 }
 
-.yv-slide .yv-rating-user .yv-user-image {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    width: 30%;
-    height: auto;
-    padding: 10px;
+.yv-slide__rating-content__ratings__purchase-rating__star svg {
+  width: 14px;
+  height: 14px;
 }
 
-.yv-slide .yv-rating-user .yv-user-image .yv-profile-img {
-    display: block;
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
+.yv-slide__rating-user {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+  height: auto;
 }
 
-.yv-slide .yv-rating-user .yv-user-info {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    width: 70%;
-    height: auto;
-    padding: 10px;
+.yv-slide__rating-user__image {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 30%;
+  height: auto;
+  padding: 10px;
 }
 
-.yv-slide .yv-rating-user .yv-user-info .yv-user-name {
+.yv-slide__rating-user__image__profile-img {
+  display: block;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+}
+
+.yv-slide__rating-user__info {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  width: 70%;
+  height: auto;
+  padding: 10px;
+}
+
+.yv-slide__rating-user__info__name {
   display: block;
   width: 100%;
   height: auto;
@@ -272,14 +273,43 @@
   color: #000;
 }
 
-.yv-slide .yv-rating-user .yv-user-info .yv-user-local {
+.yv-slide__rating-user__info__local {
   display: block;
   width: 100%;
   height: auto;
   text-align: left;
   text-transform: capitalize;
   font-size: 14px;
-  color: #000;
+  color: #444;
 }
 
-/* stop - custom yourviews slider */
+.yv-testimonial__container .paging {
+  position: absolute;
+  top: 85%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  height: auto;
+  margin: 25px 0 0;
+  background: transparent;
+  z-index: 3;
+}
+
+.yv-testimonial__container .paging .index {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin: 0 2px;
+  border: none;
+  border-radius: 50%;
+  filter: opacity(.35);
+  outline: none;
+  cursor: pointer;
+  background-color: #00bbf9;
+}
+
+.yv-testimonial__container .paging .index.active {
+  filter: opacity(1);
+}
