@@ -11,7 +11,7 @@ yv.vendorCustom = {
       return allShelfs
   },
   quickReviewAsyncSetup: function () {
-      //const shelfToInsert = document.querySelectorAll('.product-box a');
+      const shelfToInsert = document.querySelectorAll('');
       const quickReviewToLoad = document.querySelectorAll('.yv-review-quickreview:not(.is-loaded)');
       const allIds = []
       
@@ -159,7 +159,6 @@ yv.vendorCustom = {
                           yv.vendorCustom.loadShowForm();
                           yv.elementsLoaded.push(e)
                           break;
-                          //load show form
                       }
               }
               
